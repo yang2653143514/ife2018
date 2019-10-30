@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style type="text/css">
+    body{
+      min-width:700px;
+    }
+    .header,.footer{
+      border:1px solid #333;
+      text-align: center;
+      background-color: gray;
+      margin:0px;
+    }
+    .item{
+      position:relative;
+      height:300px;
+      float: left;
+    }
+    .container{
+      overflow: hidden;
+      padding:0 300px 0 200px;
+    }
+    .middle{
+      width:100%;
+      background-color:yellow;
+    }
+    .left{
+      width:200px;
+      background-color: red;
+      margin-left: -100%;
+      left:-200px;
+    }
+    .right{
+      width:300px;
+      background-color: blue;
+      margin-left: -300px;
+      left:300px;
+    }
+    .footer{
+      clear:both;
+    }
+</style>
+</head>
+<body>
+  <h1 class="header">here!</h1>
+  <div class="container">
+    <div class="middle item">11111111</div>
+    <div class="left item">2222222222</div>
+    <div class="right item">2333333333333333</div>
+  </div>
+  <h1 class="footer">there!</h1>
+</body>
+</html>

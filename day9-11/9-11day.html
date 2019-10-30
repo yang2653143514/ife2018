@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>9web</title>
+</head>
+<style>
+	* {
+		margin:0;
+		padding:0;
+		font-family: sans-serif;
+		box-sizing: border-box;
+	}
+	body{
+		text-align: center;
+		width:100%;
+	}
+	.clearfix::after{
+		content:'';
+		display:block;
+		clear:both;
+	}
+	#header{
+		background: url(image/Background.png) no-repeat;
+		height:920px;
+		position: relative;
+		padding:160px 300px;
+	}
+	#header>h1{
+		color: #fff;
+		font-size: 60px;
+		font-weight: 100;
+	}
+	#header>p{
+		margin:80px 20px;
+		font-size: 21px;
+		font-weight: 100;
+		color:rgba(255,255,255,0.4);
+	}
+	#header-account{
+		margin:0 auto;
+		border:1px solid #666;
+		width:800px;
+		height:250px;
+		letter-spacing: 3px;
+		color:rgba(255,255,255,1);
+		padding-top: 50px;
+		line-height: 30px;
+	}
+	#header-account p:nth-of-type(2){
+		font-variant: small-caps;
+        color: rgba(255,255,255,0.3);
+        margin-bottom: 50px;
+	}
+	#header-account input{
+		background-color: rgba(255,255,255,0);
+		border:1px solid #666;
+		padding:10px;
+		width:200px;
+	}
+	#header-account input:nth-of-type(3){
+		background-color: #fff;
+		width:120px;
+	}
+	#part2{
+		position: relative;
+		height:660px;
+		padding:80px 200px;
+	}
+	#part2>p{
+		font-variant: small-caps;
+	}
+	#part2>h2{
+		font-size: 35px;
+		padding:30px 210px;
+		font-weight: 100;
+	}
+	#features img{
+		padding:20px 50px;
+	}
+	#part3{
+		background:url(image/Background2.png) no-repeat;
+		height:770px;
+		padding:170px 600px 170px 270px;
+		text-align: left;
+	}
+	#part3>h2{
+		font-weight: 100;
+		font-size: 35px;
+		color:rgba(255,255,255,1);
+		width:300px;
+	}
+	#part3>p{
+		color:rgba(255,255,255,0.5);
+		font-weight: 100;
+		margin:40px 0;
+		width:320px;
+		word-wrap:break-word;
+	}
+	#part3 input{
+		width:200px;
+		padding:20px;
+		background-color: #fff;
+		border-radius: 5px;
+		border:1px solid #ccc;
+	}
+	#part3 input:nth-of-type(2){
+		color:#fff;
+		margin-left: 20px;
+		background-color: rgba(255,255,255,0);
+	}
+	#part4{
+		height:550px;
+		padding:100px;
+		border:1px solid #ccc;
+	}
+	#part4 h1{
+		font-weight: 100;
+		margin-bottom: 60px;
+	}
+	#part4 #logo{
+	}
+	#part5{
+		height:950px;
+		padding:100px 200px;
+	}
+	#part5 p{
+		text-align: left;
+		font-weight: 100;
+		width:1000px;
+	}
+	#part5 h3{
+		text-align: left;
+		padding-top: 80px;
+		margin-bottom: 30px;
+		font-weight: 700;
+		width:1000px;
+	}
+	#part5-top{
+		height:300px;
+		margin-bottom: 100px
+	}
+	#part5-top img{
+		float:left;
+		text-align: left;
+		margin-right: 80px;
+	}
+	#part5-bottom img{
+		float:right;
+		text-align: left;
+		margin-left: 80px;
+	}
+	#part6{
+		position: relative;
+		height:1200px;
+		padding:100px 200px;
+		border:1px solid #ccc;
+	}
+	#part6>p{
+		font-weight: 200;
+		margin:50px 0 70px 0;
+		padding:0 120px;
+	}
+	#part6>h2{
+		font-weight: 400;
+		font-size: 40px;
+	}
+	#userpic{
+		position: absolute;
+		top:292px;
+		left:260px;
+	}
+	#ups-1,#ups-2,#ups-3,#ups-4{
+		float:left;
+		margin: 25px;
+        width: 470px;
+        height: 340px;
+		background-color:rgba(0,0,0,0.7);
+		opacity:0;
+	}
+	#ups-1:hover,
+    #ups-2:hover,
+    #ups-3:hover,
+    #ups-4:hover {
+        opacity: 1;
+        cursor: pointer;
+    }
+	#part6 #userpic h3{
+		color:#ccc;
+	}
+	#part6 #userpic p{
+		margin: 20px;
+        letter-spacing: 3px;
+        font-variant: small-caps;
+        color: #ccc;
+	}
+	#part6 #downs{
+		position: absolute;
+		top:290px;
+		left:0;
+		z-index:-1;
+	}
+	#part6 #downs>img{
+		margin:25px;
+	}
+	#part7{
+		height: 700px;
+		padding:100px 300px 50px 300px;
+	}
+	#part7 #part7-left{
+		float:left;
+		height:550px;
+		width:400px;
+		border:1px solid #ccc;
+		border-radius:5px;
+		margin-right: 50px;
+	}
+	#part7-left h2{
+		font-weight: 500;
+		font-size: 18px;
+		margin-top: 50px;
+		margin-bottom:40px;
+	}
+	#part7-left input{
+		padding:10px;
+		width:300px;
+		margin:10px;
+	}
+	#part7-left textarea{
+		width:300px;
+		margin:10px;
+		padding:10px 10px;
+		height:200px;
+	}
+	#part7-left button{
+		background-color: #000;
+		color:#fff;
+		width:300px;
+		padding:10px auto;
+		font-size: 10px;
+		height: 40px;
+	}
+	#part7 #part7-right{
+		float: right;
+		height:550px;
+		width:400px;
+		padding:100px 50px 0 20px;
+	}
+	#part7-right h2{
+		text-align: left;
+		font-weight: 300;
+		font-size: 30px;
+	}
+	#part7-right p{
+		text-align: left;
+		font-weight: 100;
+		margin:40px 0;
+	}
+	#part7-right img{
+		display: block;
+		margin:20px 0;
+	}
+	#footer{
+		padding:70px 240px;
+		background-color: #000;
+		height:440px;
+	}
+	#footer table td,#footer table th{
+		word-break: break-all;
+		text-align:left;
+		width:250px;
+		height:60px;
+	}
+	#footer>table th a{
+		color:#fff;
+		text-decoration: none;
+	}
+	#footer>table td a{
+		color:#666;
+		text-decoration: none;
+	}
+</style>
+<body>
+	<div id="header">
+		<h1>Hello World!</h1>
+		<p>China is speeding up strategic plan,standards,traffic rules,laws and regulations on accident-incurred liabilities for its smart car industry.Economic information Daily reported Thursday.</p>
+		<div id="header-account">
+			<p>CREATE YOUR ACCOUNT</p>
+        	<p>it is absolutely free</p>
+        	<input type="text" placeholder="denis@getcraftwork.com" />
+        	<input type="password" placeholder="Create your password" />
+        	<input type="button" value="SIGN UP" />
+		</div>
+	</div>
+	<div id="part2">
+		<p>boatloads of awesome</p>
+    	<h2>Ready-made, customizable, HTML landing page sections</h2>
+    	<div id="features">
+    		<img src="image/Features 1.png" />
+    		<img src="image/Features 2.png" />
+    		<img src="image/Features 3.png" />
+    		<img src="image/Features 4.png" />
+    	</div>
+    </div>
+	<div id="part3">
+		<h2>Supportive policies for China's smart car</h2>
+    	<p>China will come up with its own smart car standards,traffic rules,laws and regulations relating to safety. according to the 	China Industry Innovation Alliance for the Intelligent and Connected Vehicles.</p>
+  	 	<input type="button" value="CHECK OUT FEATURES">
+   		<input type="button" value="TRY PRODUCT FOR FREE">
+	</div>
+	<div id="part4">
+		<h1>Try Our Awesome Products</h1>
+		<div id="logo">
+			<img src="image/Logo 1.png" />
+			<img src="image/Logo 2.png" />
+			<img src="image/Logo 3.png" />
+		</div>
+	</div>
+	<div id="part5">
+		<div id="part5-top">
+        <img src="image/Photo.png" /">
+        <h3>Learn How to Improve Your Personal Business</h3>
+        <p>Li JUN, a China Academy of Engineering academician and also director of the alliance's expert's committee,said that China will also launch design guidance for smart cars, smart map architecture and standrads for test grounds.</p>
+   		</div>
+    	 <div id="part5-bottom">
+        <img src="image/Photo2.png">
+        <h3>Choose Between Two Beautifully Designed Color Schemes.</h3>
+        <p>China will come up with its own smart car standards,traffic rules,laws and regulations relating to safety, according to the China Industry Innovation Alliance for the Intelligent and Connected Vehicles.</p>
+    	</div>
+	</div>
+	<div id="part6">
+		<h2>Our Awesome Crew</h2>
+    	<p>Our unique online teaching style makes learning easy for everyone. Whether you are trying to land a new job,brush up on your skills.</p>
+    	<div id="userpic">
+    		<div id="ups-1">
+            	<h3>Ethan Dutton</h3>
+            	<p>senior visual designer</p>
+            	<div><img src="image/Facebook.png"><img src="image/Twitter.png">
+            		<img src="image/Instagram.png"></div>
+        	</div>
+        	<div id="ups-2">
+            	<h3>Li Jun</h3>
+            	<p>senior visual designer</p>
+            	<div><img src="image/Facebook.png"><img src="image/Twitter.png">
+            		<img src="image/Instagram.png"></div>
+        	</div>
+        		<div id="ups-3">
+            	<h3>Lucy Marting</h3>
+            	<p>senior visual designer</p>
+        		<div><img src="image/Facebook.png"><img src="image/Twitter.png">
+            		<img src="image/Instagram.png"></div>
+       		</div>
+       		<div id="ups-4">
+            	<h3>Zhang Doudou</h3>
+            	<p>senior visual designer</p>
+            	<div><img src="image/Facebook.png"><img src="image/Twitter.png">
+            		<img src="image/Instagram.png"></div>
+        	</div>
+    	</div>
+    	<div id="downs">
+        <img src="image/Userpic1.png">
+        <img src="image/Userpic2.png">
+        <img src="image/Userpic3.png">
+        <img src="image/Userpic4.png">
+    	</div>
+	</div>
+	<div id="part7">
+		<div id="part7-left">
+			<h2>FELL FREE TO WRITE US</h2>
+			<input type="text" placeholder="E-mail" />
+			<input type="text" placeholder="Subject" />
+			<textarea placeholder="Message"></textarea>
+			<button type="button">SEND</button>
+		</div>
+		<div id="part7-right">
+			<h2>Contacts</h2>
+        	<p>Make any design your own using the Style Editor.Personalize fonts,
+        	colors and layouts to create the custom look you want.</p>
+        	<img src="image/Map.png">
+        	<img src="image/Phone.png">
+        	<img src="image/Mail.png">
+		</div>
+	</div>
+	<div id="footer">
+    <table>
+        <tr>
+            <th><a href="#">LEARN MORE</a></th>
+            <th><a href="#">ABOUT US</a></th>
+            <th><a href="#">SUPPORT</a></th>
+            <th><a href="#">ENJOY YOUR LIFE</a></th>
+        </tr>
+        <tr>
+            <td><a href="#">How it works?</a></td>
+            <td><a href="#">About us</a></td>
+            <td><a href="#">FAQ</a></td>
+            <td><a href="#">Great web UI for designers,freelancers or business</a></td>
+        </tr>
+        <tr>
+            <td><a href="#">Meeting tools</a></td>
+            <td><a href="#">Features</a></td>
+            <td><a href="#">Contact us</a></td>
+        </tr>
+        <tr>
+            <td><a href="#">Live streaming</a></td>
+            <td><a href="#">Privacy police</a></td>
+            <td><a href="#">Live chat</a></td>
+            <td><img src="image/Socials Buttons.png"></td>
+        </tr>
+        <tr>
+            <td><a href="#">Contact method</a></td>
+            <td><a href="#">Terms&Conditions</a></td>
+            <td><a href="#">Pall call</a></td>
+        </tr>
+    </table>
+	</div>
+</body>
+</html>

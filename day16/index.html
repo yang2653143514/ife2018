@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+    <style>
+    	#part1,#part2,#part3,#part4{
+    		border:1px solid #666;
+    		margin-bottom: 10px;
+    	}
+    	#part3 button{
+    		margin:0px 0px 20px 20px;
+    		height:40px;
+    		width:120px;
+    		font-size: 20px;
+    	}
+    	#part4 #table table{
+    		border:1px soild red;
+    	}
+	</style>
+</head>
+<body>
+	<div id="part1">
+		<h1>加减乘除运算</h1>        
+    	<input id="first-number" type="number" value="0" placeholder="第一个数字">
+    	<input id="second-number" type="number" value="0" placeholder="第二个数字">
+    	<button id="add-btn">加</button>
+    	<button id="minus-btn">减</button>
+    	<button id="times-btn">乘</button>
+    	<button id="divide-btn">除</button>
+    	<p>运算结果: <span  id="result"></span></p>
+	</div>
+	<div id="part2">
+		<h1>二进制转换</h1>
+		<input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+		<input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数">
+		<button id="trans-btn">转化为二进制</button>
+		<p>运算结果: <span  id="result2"></span></p>
+	</div>
+	<div id="part3">
+		<h1>3的小游戏</h1>
+		<button type="button" onclick="game()">点击测试</button>
+	</div>
+	<div id="part4">
+		<h1>99乘法表</h1>
+		<div id="table"></div>
+	</div>
+    <script>
+    	// 计算器
+    	document.getElementById("add-btn").onclick = function(){
+    		var x = document.getElementById("first-number").value;
+    		var y = document.getElementById("second-number").value;
+    		document.getElementById("result").innerHTML = Number(x)+Number(y);
+    	}
+    	document.getElementById("minus-btn").onclick = function(){
+    		document.getElementById("result").innerHTML = document.getElementById("first-number").value
+    		- document.getElementById("second-number").value;
+    	}
+    	document.getElementById("times-btn").onclick = function(){
+    		document.getElementById("result").innerHTML = document.getElementById("first-number").value
+    		* document.getElementById("second-number").value;
+    	}
+    	document.getElementById("divide-btn").onclick = function(){
+    		document.getElementById("result").innerHTML = document.getElementById("first-number").value
+    		/ document.getElementById("second-number").value;
+    	}
+    	// 进制转换
+    	function dec2bin(decNumber){
+    		if(decNumber>=0 && (decNumber%1)===0){
+    			var arr = new Array();
+    			var num = decNumber;
+    			while(num > 1)
+    			{
+    				arr.push(num % 2);
+    				num = parseInt(num / 2);
+    			}
+    			return num + arr.reverse().join("");
+    		}
+    		else{
+    			alert("请输入非负整数");
+    		}
+    	}
+    	document.getElementById("trans-btn").onclick=function() {
+    		var a = Number(document.getElementById("dec-number").value);
+    		var b = document.getElementById("bin-bit").value;
+    		var c = dec2bin(a);
+    		var temp = "";
+    		if(c.length > b){
+    			document.getElementById("result2").innerHTML = c;
+    			console.log("你设置的位数小于原数值位数");
+    		}
+    		else{
+    			d = b - c.length;
+    			for(;d>0;d--){
+    				temp +="0";
+    			}
+    			document.getElementById("result2").innerHTML = temp + c;
+    		}
+    	}
+    	//3的小游戏
+    	function game(){
+    		var m = [];
+    		for(var i = 1;i < 100;i++){
+    			if(i % 3 == 0 || i / 3 == 0 || i % 10 == 3){
+    				m.push("PA");
+    			}
+    			else{
+    				m.push(i);
+    			}
+    		}
+    		console.log(m.join(","));
+    	}
+    	// 乘法表
+    	var testtable = "";
+    	for(var i=1;i<10;i++){
+    		testtable += "<tr>";
+    		for(var j=1;j<=i;j++){
+    			testtable += "<td>" + i + "*" + j + "=" + i*j + "</td>";
+    		}
+    		testtable += "</tr>";
+    	}
+    	document.getElementById("table").innerHTML = "<table>" + testtable +"</table>";
+    </script>
+</body>
+</html>

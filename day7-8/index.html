@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			font-family: sans-serif;
+			padding:0;
+			margin:0;
+		}
+		.header{
+			background-color: #000;
+			color:white;
+			width:100%;
+			height:100px;
+		}
+		.logo{
+			float:left;
+			margin-top: 20px ;
+			margin-left: 100px;
+		}
+		.table{
+			position: relative;
+			float:right;
+			right:100px;
+			font-size: 12px;
+			margin-top: 10px;
+		}
+		.table a{
+			color:white;
+		}
+		.footer{
+			background-color: gray;
+			color:white;
+		}
+		.banner{
+			position: relative;
+			width:100%;
+			height:300px;
+			background-color: #5b0;
+			clear:both;
+		}
+		.banner>ul{
+			position: absolute;
+			right:20%;
+			bottom: 10px;
+		}
+		.banner>ul>li{
+			display: inline-block;
+			border:1px solid black;
+			background-color: #ad9;
+			color:#000;
+			padding:8px 10px;
+		}
+		.banner>ul>.selected{
+			padding-top: 30px;
+			background-color: white;
+		}
+		.content{
+			position: relative;
+			width:100%;
+			height:80px;
+			border-bottom: 1px solid #ccc;
+		}
+		.menu{
+			position:absolute;
+			left: calc((100% - 940px)/2);
+			bottom: -1px;
+			width:960px;
+		}
+		.menu li{
+			float:left;
+			display: inline-block;
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+			border:1px solid #ccc;
+			padding:15px 10px;
+			font-weight: 100;
+		}
+		.menu .selected {
+            border-bottom: 1px solid #fff;
+        }
+        .main{
+        	margin:auto;
+        	width:960px;
+        	display: flex;
+        	flex-wrap: wrap;
+        }
+        .main div{
+        	margin:10px;
+        	border:1px solid #ccc;
+        	font-weight: 100;
+        	padding:80px;
+        }
+        .main>div:nth-of-type(1),
+        .main>div:nth-of-type(2),
+        .main>div:nth-of-type(3){
+        	flex:1;
+        	text-align: center;
+        }
+        .main > div:nth-of-type(4),
+        .main > div:nth-of-type(5),
+        .main > div:nth-of-type(6),
+        .main > div:nth-of-type(7) {
+            flex: 1;
+            text-align: center;
+        }
+        .main > div:nth-of-type(8),
+        .main > div:nth-of-type(9),
+        .main > div:nth-of-type(10) {
+            flex: 1;
+            text-align: center;
+        }
+        .buttom{
+        	clear:both;
+        	background-color: gray;
+        	width:100%;
+        	height:100px;
+        	text-align: center;
+        	color:#fff;
+        	padding-top:10px;
+        }
+	</style>
+</head>
+<body>
+	<div class="header">
+		<h1 class="logo">Logo</h1>
+		<table class="table">
+			<tr>
+				<td><a href="#">Github</a></td>
+				<td><a href="#">Register</a></td>
+				<td><a href="#">Logon</a></td>
+			</tr>
+		</table>
+	</div>
+	<div class="banner">
+        <ul>
+            <li>1</li>
+            <li class="selected">2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+	</div>
+	<div class="content">
+		<ul class="menu">
+			<li class="selected">HOME</li>
+			<li>PROFILE</li>
+			<li>ABOUT</li>
+		</ul>
+	</div>
+	<div class="main">
+		<div>This is Content 1</div>
+		<div>MaybeContent 2</div>
+		<div>Content 3</div>
+		<div>Content 4</div>
+		<div>Content 5</div>
+		<div>Content 6</div>
+		<div>Content 7</div>
+		<div>Content 8</div>
+		<div>Content 9</div>
+		<div>Content 10</div>
+	</div>
+	<div class="buttom">
+		<p>© 2019 ife.baidu.com</p>
+	</div>
+</body>
+</html>
