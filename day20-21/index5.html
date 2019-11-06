@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
+	<button id="fade-btn">淡出</button>
+
+	<script type="text/javascript">
+		//使用setTimeout完成淡入淡出效果
+		var btn = document.getElementById("fade-btn");
+		var obj = document.getElementById("fade-obj");
+		obj.style.transition = 'all 1s';
+		btn.addEventListener('click',function(){
+			if(btn.innerHTML == '淡出'){
+				fadeOut();
+			} else {
+				fadeIn();
+			}
+		})
+
+		function fadeOut(){
+			obj.style.opacity = 0;
+			btn.setAttribute('disabled', 'true'); 
+			setTimeout(function(){
+				btn.innerHTML = '淡入';
+				btn.removeAttribute('disabled');
+			},1000);
+		}
+		function fadeIn(){
+			obj.style.opacity = 1;
+			btn.setAttribute('disabled', 'true'); 
+			setTimeout(function(){
+				btn.innerHTML = '淡出';
+				btn.removeAttribute('disabled');
+			},1000);
+		}
+	</script>
+</body>
+</html>

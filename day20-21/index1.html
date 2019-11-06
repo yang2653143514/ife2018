@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input id="name" type="text">    
+	<button id="submit-btn">Submit</button>
+
+	<script>
+		document.getElementById("submit-btn").onmousedown = function(){
+			console.log(document.getElementById("name").value);
+		}
+		window.addEventListener('keydown',function(e){
+			// 按下回车键
+            if(e.keyCode == 13){
+                console.log(document.querySelector('#name').value);
+            }
+            //按下Esc
+            if(e.keyCode == 27){
+                document.querySelector('#name').value = "";
+            }
+		})
+	</script>
+</body>
+</html>
