@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<p>打开console控制台</p>
+	<button>假设id和name均不会重复，根据输入name找到对应的id</button>
+	<button>假设id和name均不会重复，根据输入id找到对应的name</button>
+	<button>把这个对象中所有的名字以“前序遍历”的方式全部输出到console中</button>
+	<button>把这个对象中所有的名字以“中序遍历”的方式全部输出到console中</button>
+	<button>把这个对象中所有的名字以“后序遍历”的方式全部输出到console中</button>
+	<script type="text/javascript">
+		var tree = {
+		    "id": 0,
+		    "name": "root",
+		    "left": {
+		        "id": 1,
+		        "name": "Simon",
+		        "left": {
+		            "id": 3,
+		            "name": "Carl",
+		            "left": {
+		                "id": 7,
+		                "name": "Lee",
+		                "left": {
+		                    "id": 11,
+		                    "name": "Fate"
+		                }
+		            },
+		            "right": {
+		                "id": 8,
+		                "name": "Annie",
+		                "left": {
+		                    "id": 12,
+		                    "name": "Saber"
+		                }
+		            }
+		        },
+		        "right": {
+		            "id": 4,
+		            "name": "Tony",
+		            "left": {
+		                "id": 9,
+		                "name": "Candy"
+		            }
+		        }
+		    },
+		    "right": {
+		        "id": 2,
+		        "name": "right",
+		        "left": {
+		            "id": 5,
+		            "name": "Carl",
+		        },
+		        "right": {
+		            "id": 6,
+		            "name": "Carl",
+		            "right": {
+		                "id": 10,
+		                "name": "Kai"
+		            }        
+		        }
+		    }
+		}
+
+		// 假设id和name均不会重复，根据输入name找到对应的id
+		function findIdByName(name) {
+			var findId = function(obj){
+				if(!obj) return false;
+				if(obj.name == name) return obj.id;
+				// 利用或的条件判断，如果左边为false，则会执行右边判断
+				return (findId(obj.left) || findId(obj.right));
+			}
+			return findId(tree);
+		}
+
+		// 假设id和name均不会重复，根据输入id找到对应的name
+		function findNameById(id) {
+			var findName = function(obj){
+				if(!obj) return false;
+				if(obj.id == id) return obj.name;
+				// 利用或的条件判断，如果左边为false，则会执行右边判断
+				return (findName(obj.left) || findName(obj.right));
+			}
+			return findName(tree);
+		}
+
+		// 把这个对象中所有的名字以“前序遍历”的方式全部输出到console中
+		function getListWithDLR() {
+			var font = function(obj){
+				console.log(obj.name);
+				if(obj.left) font(obj.left);
+				if(obj.right) font(obj.right);
+			}
+			font(tree);
+		}
+
+		// 把这个对象中所有的名字以“中序遍历”的方式全部输出到console中
+		function getListWithLDR() {
+			var middle = function(obj){
+				if(obj.left) middle(obj.left);
+				console.log(obj.name);
+				if(obj.right) middle(obj.right);
+			}
+			middle(tree);
+		}
+
+		// 把这个对象中所有的名字以“后序遍历”的方式全部输出到console中
+		function getListWithLRD() {
+			var back = function(obj){
+				if(obj.left) back(obj.left);
+				if(obj.right) back(obj.right);
+				console.log(obj.name);
+			}
+			back(tree);
+		}
+
+		var buttons = document.getElementsByTagName('button');
+		buttons[0].addEventListener('click', function(){
+		    console.log('输入名字，找到对应id');
+		    console.log( findIdByName('root') );
+		    console.log( findIdByName('Kai') );
+		    console.log( findIdByName('Carl') );
+		    console.log( findIdByName('Tony') );
+		    console.log( findIdByName('Fate') );
+		});
+		buttons[1].addEventListener('click', function(){
+		    console.log('输入id，找到对应名字');
+		    console.log(findNameById('0'));
+		    console.log(findNameById('2'));
+		     console.log(findNameById('6'));
+		    console.log(findNameById('8'));
+		});
+		buttons[2].addEventListener('click', function(){
+		    console.log('前序遍历');
+		    getListWithDLR();
+		});
+		buttons[3].addEventListener('click', function(){
+		    console.log('中序遍历');
+		    getListWithLDR();
+		});
+		buttons[4].addEventListener('click', function(){
+		    console.log('后序遍历');
+		    getListWithLRD();
+		});
+	</script>
+</body>
+</html>

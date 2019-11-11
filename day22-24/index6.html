@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input id="queue-input" type="text">
+	<p id="queue-cont">栈内容：apple-&gt;pear</p>   
+	<button id="in-btn">入栈</button>
+	<button id="out-btn">出栈</button>
+	<button id="font-btn">打印栈头元素内容</button>
+	<button id="empty-btn">判断栈是否为空</button>
+	<button id="rev-btn">反转栈方向（目前为最右边的是栈头）</button>
+	<p id="queue-error"></p> 
+
+	<script>
+	// 模拟栈，先进后出
+	var queue = ["apple", "pear"];
+	var flag = true;
+	var input = document.getElementById('queue-input');
+	var cont = document.getElementById('queue-cont');
+	var error = document.getElementById('queue-error');
+	document.getElementById('in-btn').onclick = function(){
+		if(input.value !== ''){
+			if(flag){
+				queue.unshift(input.value);
+				cont.innerHTML = '栈内容：' + queue.join('->');
+			} else {
+				queue.push(input.value);
+				cont.innerHTML = '栈内容：' + queue.join('<-');
+			}
+		} else {
+			error.innerHTML = '请先输入内容!';
+		}
+	}
+	document.getElementById('out-btn').onclick = function(){
+		if(queue.length){
+			if(flag){
+				queue.shift();
+				cont.innerHTML = '栈内容：' + queue.join('->');
+			} else {
+				queue.pop();
+				cont.innerHTML = '栈内容：' + queue.join('<-');
+			}
+		} else {
+			error.innerHTML = '栈已经为空!';
+		}
+	}
+	document.getElementById('font-btn').onclick = function(){
+		if(queue.length){
+			cont.innerHTML = '栈头元素为：' + (flag ? queue[queue.length-1] : queue[0]);
+		} else {
+			error.innerHTML = '栈已经为空!';
+		}
+	}
+	document.getElementById('empty-btn').onclick = function(){
+		if(queue.length){
+			cont.innerHTML = '栈不为空！';
+		} else {
+			cont.innerHTML = '栈已经为空!';
+		}
+	}
+	document.getElementById('rev-btn').onclick = function(){
+		if(flag){
+			document.getElementById('rev-btn').innerHTML = '反转栈方向（目前为最左边的是栈头）';
+			cont.innerHTML = '栈内容：' + queue.join('<-');
+		} else {
+			document.getElementById('rev-btn').innerHTML = '反转栈方向（目前为最右边的是栈头）';
+			cont.innerHTML = '栈内容：' + queue.join('->');
+		}
+		flag = !flag;
+	}
+	</script>
+</body>
+</html>
