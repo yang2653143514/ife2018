@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="time-select">
+		<select id="year-select">
+		</select>
+
+		<select id="month-select" >
+		</select>
+
+		<select id="day-select" >
+		</select>
+
+		<select id="hour-select" >
+	    </select>
+	      
+	    <select id="minite-select" >
+	    </select>
+	      
+	    <select id="second-select" >
+	    </select>
+    </div>
+    <p id="result-wrapper">现在距离所选时间已经过去:  ☺ </p>
+
+	<script type="text/javascript">
+		var timeSelect = document.getElementById('time-select');
+		var yearSelect = document.getElementById('year-select');
+		var monthSelect = document.getElementById('month-select');
+		var daySelect = document.getElementById('day-select');
+		var hourSelect = document.getElementById('hour-select');
+		var minuteSelect = document.getElementById('minite-select');
+		var secondSelect = document.getElementById('second-select');
+		var result  = document.getElementById('result-wrapper');
+
+		function generateFrag(start,end){
+			var frag = document.createDocumentFragment(); // 只存在于内存块的节点
+			for(var i = start;i <= end;i++){
+				var option = document.createElement('option');
+				option.innerHTML = i;
+				frag.appendChild(option);
+			}
+			return frag;
+		}
+		function generateOption(){
+			yearSelect.appendChild(generateFrag(2001,2032));
+			monthSelect.appendChild(generateFrag(1,12));
+			dayset();		
+			hourSelect.appendChild(generateFrag(0,23));
+			minuteSelect.appendChild(generateFrag(0,59));
+			secondSelect.appendChild(generateFrag(0,59));
+			outDate();
+		}
+		function dayset(){
+			var year = Number(yearSelect.value);
+			var month = Number(monthSelect.value);
+			daySelect.innerHTML = '';//清空子节点
+			switch(month){
+				case 4:
+				case 6:
+				case 9:
+				case 11:
+					daySelect.appendChild(generateFrag(1,30));
+					break;
+				case 2:
+					if(year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)){
+						daySelect.appendChild(generateFrag(1,29));
+					} else {
+						daySelect.appendChild(generateFrag(1,28));
+					}
+					break;
+				default:
+					daySelect.appendChild(generateFrag(1,31));
+					break;
+			}
+		}
+		function outDate(){
+			var nowTime = new Date();
+	        // month 在 Date 中 只有 0 - 11 而设置的值为1-12 
+	        var selectedTime = new Date(yearSelect.value, monthSelect.value-1, daySelect.value, hourSelect.value, minuteSelect.value,secondSelect.value);
+	        var diffTime =  nowTime - selectedTime>0 ? (nowTime - selectedTime)/1000 : (selectedTime-nowTime)/1000; 
+
+	        var days = Math.floor(diffTime/24/3600);
+	        var hours = Math.floor((diffTime - days*24*3600) / 3600 );
+	        var mins = Math.floor((diffTime - days*24*3600 - hours*3600) / 60);
+	        var secs = Math.floor((diffTime - days*24*3600 - hours*3600 - mins*60));
+	        if (nowTime-selectedTime>0) {
+	          result.innerText = '现在距离所选时间已经过去 ' + days+' 天'+hours+ ' 小时'+mins+' 分'+secs+' 秒';
+	        } else {
+	          result.innerText = '现在距离所选时间还有 ' + days+' 天'+hours+ ' 小时'+mins+' 分'+secs+' 秒';
+			}
+			setTimeout(outDate,500);
+		}
+		document.body.addEventListener("change", function(e) {
+            // 如果当前事件主体id是"year-select"和"month-select"，重新设置天数。
+            if(e.target ==  yearSelect || e.target ==  monthSelect) {
+            	dayset();
+            }
+            outDate();
+        })
+		generateOption();
+	</script>
+</body>
+</html>

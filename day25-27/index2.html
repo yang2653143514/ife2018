@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<p>简单的时钟:</p>
+	<p id = 'show-time1'></p>
+	<p id = 'show-time2'></p>
+
+	<script type="text/javascript">
+		function getDate(flag){
+			var today = new Date();
+			var year = today.getFullYear();
+			var month = fulltime(today.getMonth() + 1);
+			var day = fulltime(today.getDate());
+			var week = getWeek(today.getDay(),flag);
+			var hour = fulltime(today.getHours());
+			var minute = fulltime(today.getMinutes());
+			var second = fulltime(today.getSeconds());
+
+			var dayTime = flag ? '' : ((hour < 12) ? 'AM' : 'PM');
+			hour = (dayTime == 'PM') ? (hour - 12) : hour;
+			// console.log(year + '年' + month+ '月' + day + '日' + week
+			//  + hour + ':' + minute + ':' +second);
+			return {
+				'year':year,
+				'month':month,
+				'day':day,
+				'week':week,
+				'hour':hour,
+				'minute':minute,
+				'second':second,
+				'dayTime':dayTime
+			}
+		}
+		function fulltime(i){//补0
+			if(i < 10){
+				i = '0' + i;
+			}
+			return i;
+		}
+		function getWeek(week,flag){
+			var weekDay = (flag ? ['星期天','星期一','星期二','星期三','星期四','星期五','星期六']
+                          : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']);
+        	return weekDay[week];
+		}
+		function outDate(){
+			var date = getDate(1);
+			str = date.year + '年' + date.month+ '月' + date.day + '日' + date.week
+			+ ' '  + date.hour + ':' + date.minute + ':' +date.second;
+			document.getElementById('show-time1').innerHTML = str;
+
+			date = getDate(0);
+			str = date.year + '-' + date.month+ '-' + date.day + ' ' + date.week
+			+ ' '  + date.hour + ':' + date.minute + ':' +date.second + ' ' + date.dayTime;
+			document.getElementById('show-time2').innerHTML = str;
+			setTimeout(outDate,500);
+		}
+		outDate();
+	</script>
+</body>
+</html>
