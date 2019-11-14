@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			padding: 0;
+			margin:0;
+			box-sizing: border-box;
+		}
+		.wrapper{
+			font-size: 20px;
+			user-select: none;
+		}
+		.wrapper{
+			position: relative;
+			padding:20px;
+		}
+		input{
+			font-size: 20px;
+			margin-top:10px;
+			padding:5px;
+			width:300px;
+		}
+		ul{
+			padding:5px;
+			position: absolute;
+			display: none;
+			width:200px;
+			border:1px solid blue;
+			background:white;/*覆盖文字*/
+		}
+		ul>li{
+			padding:2px 0;
+			list-style: none;
+		}
+		ul li.mouseActive {
+			background: rgb(192, 221, 237);
+		}
+		ul li.keyActive {
+	      background: rgb(212, 181, 185);
+	    }
+	</style>
+
+</head>
+<body>
+	<div class="wrapper">
+		<p>请输入邮箱：</p>
+    	<input id="email-input" type="text" maxlength="13">
+    	<ul id="email-sug-wrapper" class="email-sug"></ul>
+    	<p>覆盖文字</p>
+    	<p>覆盖文字</p>
+	</div>
+
+	<script type="text/javascript">
+		var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+		var emailInput = document.getElementById('email-input');
+		var emailWrapper = document.getElementById('email-sug-wrapper');
+		var index = 0;//判断选择框的位置
+		var mainEmail = function() {
+			//inputDom的输入监听
+		    // 获取用户输入，生成提示框中的提示内容，将提示内容添加到email-sug-wrapper中
+		    // 控制email-sug-wrapper的显示/隐藏状态
+		    emailInput.value = inputDom(emailInput.value);
+		    generateFrag(emailInput.value);
+		    controlPromptBox(emailInput.value,emailWrapper);
+		}
+		//事件
+		emailInput.addEventListener('input',mainEmail);
+		var eventType = function(event){
+			var t = event.target;
+			switch (event.type) {
+				case 'click':
+					emailInput.value = t.innerText;
+					emailInput.focus();
+					hiddenPromptBox();
+					break;
+				case 'mouseover':
+					liAllNode =  document.querySelectorAll('#email-sug-wrapper li'); 
+					for (let i=0; i<liAllNode.length; ++i) {
+						liAllNode[i].classList='';//替代了mouseout方法
+						if (t === liAllNode[i]) index = i;//改变键盘事件的index值
+					}
+					if(t.nodeName == 'LI'){
+						t.classList.add('mouseActive');
+					}
+					break;
+				// case 'mouseout':
+				// 	if(t.nodeName == 'LI'){
+				// 		t.classList='';
+				// 	}
+				// 	break;
+				default:
+					break;
+			}
+		}
+		emailWrapper.onclick = eventType;
+		emailWrapper.onmouseover = eventType;
+		emailWrapper.onmouseout = eventType;
+
+		emailInput.addEventListener('keyup',function(event){
+			var allLiNode = document.querySelectorAll('li');
+			var len = allLiNode.length;
+			var t = event.target;
+			//console.log(index);
+			switch(event.keyCode){
+				// 38是up键
+				case 38:
+					(index == 0) ? index = len-1 : index--;
+					for (let i=0; i<len; ++i) {
+			        	allLiNode[i].classList='';
+			        }
+					allLiNode[index].classList.add('keyActive');
+					break;
+				case 40:// 40是down键
+					(index == len - 1) ? index = 0 : index++;
+					for (let i=0; i<len; ++i) {
+			        	allLiNode[i].classList='';
+			        }
+					allLiNode[index].classList.add('keyActive');
+					break;
+				case 13:// 13是enter键
+					emailInput.value = allLiNode[index].innerHTML;
+					hiddenPromptBox();
+					break;
+				case 27:// 27是esc键
+					emailInput.select();
+					break;
+				default:
+					if(len != 0){
+						allLiNode[0].classList.add('keyActive'); 
+					}
+					break;
+			}
+		})
+
+		function inputDom(e) {//获取用户输入
+		    return e.trim(); 
+		}
+
+		function generateFrag(e) {//生成提示框中的提示内容
+		    var frag = document.createDocumentFragment();
+		    /* 要对 emailInput.value 进行分析
+				1. 不含@字符 , 进行拼接补全
+				2. 包含@字符， 进行拼接补全
+				3. @字符之后，还有字符，进一步的补全
+			*/
+		    for(i of postfixList){
+		    	li = document.createElement('li');
+		    	var index = e.indexOf('@');
+		    	if(index == -1){
+		    		li.innerText = e + '@' + i;
+		    		frag.appendChild(li);
+		    	} else {
+		    		var left = e.slice(0,index);
+		    		var right = e.slice(index+1);
+		    		if(right == ''){
+		    			li.innerText = e + i;
+		    			frag.appendChild(li);
+		    		}
+		    		for(let j = 0,len = right.length;j < len;j++){
+		    			if(i.charAt(j) != right.charAt(j)){
+		    				break;
+		    			} else if(j == len-1){
+		    				li.innerText = left + '@' + i;
+		    				frag.appendChild(li);
+		    			}
+		    		}
+		    	}
+		    }
+		    addPromptBox(frag);
+		}
+
+		function addPromptBox(frag) {//将提示内容添加到email-sug-wrapper中
+		    // 获取生成提示框中的提示内容
+		    emailWrapper.innerHTML = '';
+		    emailWrapper.appendChild(frag);
+		}
+
+		function controlPromptBox(e1,e2) {//控制email-sug-wrapper的显示/隐藏状态
+			if(e1 == '' || e2.innerHTML == '') {
+				hiddenPromptBox();
+			} else {
+				showPromptBox();
+			}
+		}
+		function hiddenPromptBox() {//隐藏提示框
+		    emailWrapper.style.display = 'none';
+		}
+
+		function showPromptBox() {//显示提示框
+		    emailWrapper.style.width = getComputedStyle(emailInput).getPropertyValue('width');
+		    emailWrapper.style.display = 'block';
+		}
+		window.onload = function() {
+			emailInput.focus();
+		}
+	</script>
+</body>
+</html>
