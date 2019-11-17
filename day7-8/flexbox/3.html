@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>两栏左随窗口变化右300</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .flexbox {
+            display: flex;
+            flex-direction: row-reverse;
+        }
+
+        .left {
+            width: 300px;
+            border: 2px dotted #888;
+            background-color: #ffff00;
+        }
+        .right {
+            width: calc(100% - 300px);
+            border: 2px dotted #888;
+            background-color: #5599ff;
+        }
+    </style>
+</head>
+<body>
+<div class="flexbox">
+    <div class="left">
+        <p>三、清除浮动<br>
+    float具有“破坏性”，它会导致父元素“坍塌”，这将不是所要看到的。如何去避免float带来的这种影响呢（也就是我们常说的“清除浮动”） ？方法有很多种，我在这里介绍4中供大家参考，大家可根据实际情况来选择。<br>
+    为父元素添加overflow:hidden　　这样父元素就有高度了 ，父元素的高度便不会被破坏；<br>
+    浮动父元素
+    　　这两个方法比较简单，在这里也就不再演示了，大家有兴趣的可以自己去试试。<br>
+    　　第三种方法也不是很常用，但是大家要知道clear:both这个东西。通过在所有浮动元素下方添加一个clear:both的元素，可以消除float的破坏性。</p>
+    </div>
+    <div class="right">
+        <p>第四种我们定义一个.clearfix类，然后对float元素的父元素应用这一样式即可，非常简单吧？注意，你可能会搜出不同版本的clearfix，有的代码比上图中的代码多，你不用理会它，就按照我的贴图的代码写就行。<br>
+    究其原理，其实就是通过伪元素选择器，在div后面增加了一个clear:both的元素，跟第三种方法是一个道理。<br>
+    4.浮动的应用（使用float做网页布局）<br>
+    1.设置float属性后，元素实际上会inline-block块状化<br>
+    2.可以去掉排列间的空格<br>
+    flex 元素仅在默认宽度之和大于容器的时候才会发生收缩，其收缩的大小是依据 flex-shrink 的值。
+    如果所有项目的 flex-shrink 属性都为1，当空间不足时，都将等比例缩小。如果一个项目的 flex-shrink 属性为0，其他项目都为1，则空间不足时，前者不缩小。
+        </p>
+    </div>
+</div>
+</body>
+</html>

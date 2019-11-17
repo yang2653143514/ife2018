@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第12-15天网页</title>
+	<style>
+		* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Proxima Nova" sans-serif;
+            font-size: 10px;
+        }
+        html,body{/*如果 <body> 及其子元素的高度需要设置为窗口高度时，<html> 元素上也需要添加*/
+			height: 100%;
+		}
+		body{
+			width:1600px;
+			border: 2px solid #ccc;
+		}
+        .clearfix:after{
+            content:"";
+            display:block;
+            visibility:hidden;
+            clear:both;
+            height:0;
+        }
+        .clearfix{ /* 为了照顾ie6浏览器*/
+            zoom:1;
+        }
+        .left{
+        	width:100px;
+        	height:100%;
+        	float:left;
+        	background: #1D2530;
+        }
+        .left img {
+            position: fixed;
+            left: 20px;
+        }
+        .left *:hover {
+            cursor: pointer;
+        }
+        #Item1 {
+            top: 20px;
+        }
+        #Item2 {
+            top: 100px;
+        }
+        #Item3 {
+            top: 180px;
+        }
+        #Item4 {
+            top: 260px;
+        }
+        .left div {
+	        position: fixed;
+	        bottom: 20px;
+	        width: 16px;
+	        height: 16px;
+	        background: url(img/BottomActions.png);
+	        background-size: cover;
+        }
+        #menubtn {
+            left: 30px;
+        }
+        #setbtn {
+            left: 60px;
+            background-position: -32px;
+        }
+	</style>
+</head>
+<body>
+<!-- 最左侧一列要求自适应浏览器高度，左上面4个按钮相对浏览器左上角固定位置，左下方两个按钮相对浏览器左下角固定位置
+左侧第二列(蓝色背景色)导航列固定宽度，高度也是自适应浏览器高度，最下面的Monthly Goals部分的内容相对浏览器下边固定位置
+整个白色区域自适应宽度，右上方的人脸，名字部分相对浏览器右上角固定位置
+白色区域左侧列固定宽度，右侧列自适应宽度 -->
+<div class="left">
+    <img id="Item1" src="img/Item1.png">
+    <img id="Item2" src="img/Item2.png">
+    <img id="Item3" src="img/Item3.png">
+    <img id="Item4" src="img/Addapp.png">
+    <div id="menubtn"></div>
+    <div id="setbtn"></div>
+</div>
+
+<div class="middle">
+    <ul>
+        <li>MENU <img src="img/Settingicon.png" style="float: right;"></li>
+        <li>Overview</li>
+        <li>Sales <span class="Tips">54</span></li>
+        <li>Your Staff</li>
+        <li>Analytics & Targeting</li>
+        <li>What's New</li>
+    </ul>
+    <hr>
+    <ul>
+        <li>YOUR PRODUCTS <img src="img/Settingicon.png" style="float: right;"></li>
+        <li id="products1">Books</li>
+        <li id="products2">Tutorials</li>
+        <li id="products3">Stocks</li>
+        <li id="products4">Infographics</li>
+    </ul>
+    <hr>
+    <ul>
+        <li>DASHBOARD <img src="img/Settingicon.png" style="float: right;"></li>
+        <li>Messages <span class="Tips">21</span></li>
+        <li>Connections</li>
+        <li>Integrations <span class="Warning">!</span></li>
+        <li>Account Settings</li>
+        <li>App Settings</li>
+    </ul>
+    <div id="monthlygoal">
+        <p>Monthly Goal<span>$580/$3200</span></p>
+        <progress max="3200" value="580"></progress>
+    </div>
+</div>
+
+<div class="right">
+    <!-- 右侧块头部区域 -->
+    <div id="headericon">
+        <img src="img/headericon.png">
+        <p><strong class="bluefont">Jodan J. </strong>Administrator</p>
+        <img id="dropdown" src="img/dropdown.png">
+    </div>
+    <!-- 右侧块内容区域 -->
+    <div id="right-content">
+        <!-- 内容左边固定宽度的列表 -->
+        <div id="content1">
+            <h1>Messages</h1>
+            <ul>
+                <li id="Search">
+                    <div>
+                        <input type="text" placeholder="Search">
+                        <img src="img/Searchicon.png">
+                    </div>
+                </li>
+                <li>
+                    <p class="time">3m</p>
+                    <p class="name" ><strong class="bluefont">· Bessie Berry </strong><br><span>Twitter</span></p>
+                    <p class="state" ><span class="Tips">4</span>I pay for the 4Mb/sec down, 512 Kb/sec up service from O2. In fact, it's relatively quick, and stable...
+                    </p>
+                </li>
+                <li>
+                    <p class="time">8m</p>
+                    <p class="name"><strong>Victor Webber </strong><br><span>Adobe</span></p>
+                    <p class="state">I shared this on my fb wall a few months back, and I thought I'd share it here again because it's such a great...
+                    </p>
+                </li>
+                <li>
+                    <p class="time">Yesterday</p>
+                    <p class="name"><strong>Dustin Benson </strong><br><span>Facebook</span></p>
+                    <p class="state">If there is anyone who needs an invitation plase add yourself in the comments of this post!
+                    </p>
+                </li>
+                <li>
+                    <p class="time">Yesterday</p>
+                    <p class="name"><strong>Jack Mason </strong><br><span>Yahoo</span></p>
+                    <p class="state">BruteDC is a peer-to-peer movie+tv series sharing and downloading platform which works on intranet inside...
+                    </p>
+                </li>
+                <li>
+                    <p class="time">13 Jun</p>
+                    <p class="name"><strong>Stephen Shelton </strong><br><span>Snapchat</span></p>
+                    <p class="state">Yes, p2p traffic is often filtered (QoSed). Although i do use BT on O2 wires, and in good days dl speed...
+                    </p>
+                </li>
+                <li>
+                    <p class="time">12 Jun</p>
+                    <p class="name"><strong>Sally Willis </strong><br><span>Twitter</span></p>
+                    <p class="state">Yes, it's O2:'internet extreme', which is no longer offered.
+                    </p>
+                </li>
+                <li>
+                    <p class="time">9 Jun</p>
+                    <p class="name"><strong>Robert Patton </strong><br><span>A Team</span></p>
+                    <p class="state">I change my service from this 4Mb plan to their much
+                    </p>
+                </li>
+           </ul>
+        </div>
+        <!-- 内容右侧自适应宽度 -->
+        <div id="content2">
+            <div id="content2-1">
+                <div id="page">
+                    <img src="img/Tools.png">
+                    <p><strong> 1 of 28</strong></p>
+                    <img src="img/Chats.png">
+                </div>
+                    <strong class="bluefont">Bessie Berry ·</strong>
+            </div>
+
+            <div id="content2-2">
+                <div>
+                    <p><strong>Bessie Berry </strong> 8:31 AM</p>
+                    <p>Hi guys lve got the O2 package and have really slow internet. A speed check online said i can get 3mbps but it seems more like 0.5 these days, just freezing and taking ages to open pages and open audio files for example.I have decide to switch to the UPC package which offers 10mbps but do you think i will get it?
+                    </p>
+                </div>
+                <div>
+                    <p><strong>Jordan Jackson</strong> 8:31 AM</p>
+                    <p>I have internet for 9 month and nevere could benefit from the full capacity of 5Mbit/s as it is filtered by O2 when it detect traffic on public p2p sharing in my situation all my internet speed slows to 512Kbit/s. I never had 400KB/s on when downloading from p2p public servers like torrent emule etc. I downoad with 500KB/s from private trakers instead. So conlcusion O2 block trafic on p2p connections. I have made hundreds of test in Italy and Sweden and Romania with the same file to doanload with the same setting and same antivirus and just needed to open ports in firewall and forward same ports and the speed was at full capacity in 1 minute. here in 9 month never had this luck.
+                    </p>
+                </div>
+            </div>
+
+            <div id="content2-3">
+                <p>Tuesday</p>
+                <div>
+                    <p><strong>Bessie Berry </strong> 8:31 AM</p>
+                    <p>Funny comparison, so would the proper antivirus not slow down the internet as much or do you mean a freebie doenst protect the computer from viruses?
+                    </p>
+                </div>
+                <div>
+                    <p><strong>Jordan Jackson</strong> 8:31 AM</p>
+                    <p>I pay for the 4Mb/sec down, 512 Kb/sec up service from O2, and haven't had any problems. In fact, it's  relatively quick, and stable. It's not perfect, but I really don't have issues, as long as I keep track of what I'm doing on it. I max out at about 3 Mb/sec down, and 350Kb/sec up. Probably because of a noisy telephone line, not because I'm being throttled. When my uploads go over 25 KB/sec (note, byte, not bits), my download speed suffers. This is expected, as downloads require upload bandwidth as well.
+                    </p>
+                    <img src="img/Photo1.png">
+                    <img src="img/Photo2.png">
+                </div>
+            </div>
+
+            <div id="content2-4">
+                <p>New Massages</p>
+                <div>
+                    <p><strong>Jordan Jackson</strong> 8:31 AM</p>
+                    <p>I pay for the 4Mb/sec down, 512 Kb/sec up service from O2. In fact, it's  relatively quick, and stable.it's not perfect, but I really don't have issues, as long as I keep track of what I'm doing on it.
+                    </p>
+                </div>
+                <input type="text" placeholder="Well,kinda both:) but more of that second option, i've seen many systems infected and crawling with ">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
