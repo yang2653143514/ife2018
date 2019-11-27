@@ -15,8 +15,8 @@
 			height: 100%;
 		}
 		body{
-			width:1600px;
 			border: 2px solid #ccc;
+            display: flex;
 		}
         .clearfix:after{
             content:"";
@@ -29,6 +29,7 @@
             zoom:1;
         }
         .left{
+            flex-shrink: 0;
         	width:100px;
         	height:100%;
         	float:left;
@@ -67,6 +68,184 @@
         #setbtn {
             left: 60px;
             background-position: -32px;
+        }
+        .middle{
+            padding: 20px;
+            color:#ccc;
+            width:250px;
+            height:100%;
+            float:left;
+            background: #202C3A;
+        }
+        .middle ul{
+            padding:15px 0;
+        }
+        .middle li{
+            font-weight: 900;
+            width:210px;
+            padding:10px 0;
+            list-style: none;
+        }
+        .middle li:first-child{
+            color:#888;
+        }
+        .Tips{
+            float:right;
+            color:white;
+            padding:5px 10px;
+            border-radius: 20px;
+            background-color: #1D98F4;
+            transform: translateY(-20%);
+        }
+        hr{
+            border-color: #555;
+        }
+        #products1 {
+            background: url(img/Icons.png) no-repeat left 10px;
+            padding-left: 30px;
+        }
+        #products2 {
+            background: url(img/Icons.png) no-repeat left -25px;
+            padding-left: 30px;
+        }
+        #products3 {
+            background: url(img/Icons.png) no-repeat left -62px;
+            padding-left: 30px;
+        }
+        #products4 {
+            background: url(img/Icons.png) no-repeat left -99px;
+            padding-left: 30px;
+        }
+        #monthlygoal{
+            position: fixed;
+            bottom:20px;
+        }
+        #monthlygoal p{
+            font-weight: 600;
+            font-size: 14px;
+        }
+        #monthlygoal span{
+            margin-left: 30px;
+            font-size: 14px;
+        }
+        #monthlygoal progress{
+            margin-top:20px;
+            width: 100%;
+            background: #A392EB;
+        }
+        .right{
+            width:calc(100% - 350px);
+            height:100%;
+        }
+        #headericon{
+            padding:10px 20px;
+            width:100%;
+            height:80px;
+            display: flex;
+            justify-content: space-between;
+        }
+        #headericon h1{
+            font-size: 30px;
+            align-self: center;
+        }
+        #headericon .icon{
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+        }
+        #headericon .icon p{
+            flex-basis: 50px;
+            font-size: 16px;
+            font-weight: 500;
+            color:gray;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: space-around;
+        }
+        .bluefont{
+            font-size: 16px;
+            color:blue;
+            font-weight: 500;
+        }
+        #right-content{
+            display: flex;
+            height:calc(100% - 80px);
+        }
+        #content1{
+            width:400px;
+            flex-shrink: 0;
+            border:1px solid #eee;
+            overflow: hidden;
+        }
+        #content1 #search{
+            position: relative;
+            width:100%;
+            height:60px;
+            border:1px solid #eee;
+        }
+        #search div{
+            position: absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            width:300px;
+            height:30px;
+            margin:auto;
+        }
+        #search div input{
+            padding:2px 5px;
+            border-radius: 5px;
+            width:300px;
+            height:30px;
+            border:1px solid #aaa;
+            outline: none;
+            font-size: 12px;
+        }
+        #search div img{
+            position: absolute;
+            top:7px;
+            right:10px;
+        }
+        #content1 ul{
+            list-style: none;
+            height:calc(100% - 60px);
+            overflow-y: scroll;
+        }
+        #content1 ul::-webkit-scrollbar {
+            display:none;
+        }
+        #content1 li{
+            padding:15px;
+            height:120px;
+            border:1px solid #eee;
+            position: relative;
+        }
+        #content1 li .person{
+            margin-bottom: 5px;
+        }
+        #content1 .person img{
+            float:left;
+        }
+        #content1 .person .time{
+            float:right;
+            font-size: 14px;
+            color:#666;
+        }
+        #content1 .person .name{
+            display:block;
+            padding:0 60px;
+            line-height: 25px;
+        }
+        #content1 .person .name span{
+            font-size:14px;
+            color:gray;
+        }
+        #content1 .state{
+            font-size:12px;
+        }
+        #content2{
+            border:1px solid #ccc;
         }
 	</style>
 </head>
@@ -116,64 +295,87 @@
     </div>
 </div>
 
-<div class="right">
+ <div class="right">
     <!-- 右侧块头部区域 -->
     <div id="headericon">
-        <img src="img/headericon.png">
-        <p><strong class="bluefont">Jodan J. </strong>Administrator</p>
-        <img id="dropdown" src="img/dropdown.png">
+        <h1>Messages</h1>
+        <div class="icon">
+            <div class="headimage"><img src="img/headericon.png"></div>
+            <p><strong class="bluefont">Jodan J. </strong>Administrator</p>
+            <img id="dropdown" src="img/dropdown.png">
+        </div>
     </div>
     <!-- 右侧块内容区域 -->
     <div id="right-content">
         <!-- 内容左边固定宽度的列表 -->
         <div id="content1">
-            <h1>Messages</h1>
+            <div id="search">
+                <div>
+                    <input type="text" placeholder="Search">
+                    <img src="img/Searchicon.png">
+                </div>
+            </div>
             <ul>
-                <li id="Search">
-                    <div>
-                        <input type="text" placeholder="Search">
-                        <img src="img/Searchicon.png">
-                    </div>
-                </li>
                 <li>
-                    <p class="time">3m</p>
-                    <p class="name" ><strong class="bluefont">· Bessie Berry </strong><br><span>Twitter</span></p>
+                    <div class="person">
+                        <img src="img/Bessie.png">
+                        <p class="time">3m</p>
+                        <p class="name" ><strong class="bluefont">· Bessie Berry </strong><br><span>Twitter</span></p>
+                    </div>
                     <p class="state" ><span class="Tips">4</span>I pay for the 4Mb/sec down, 512 Kb/sec up service from O2. In fact, it's relatively quick, and stable...
                     </p>
                 </li>
                 <li>
-                    <p class="time">8m</p>
-                    <p class="name"><strong>Victor Webber </strong><br><span>Adobe</span></p>
+                    <div class="person">
+                        <img src="img/Victor.png">
+                        <p class="time">8m</p>
+                        <p class="name"><strong>Victor Webber </strong><br><span>Adobe</span></p>
+                    </div>
                     <p class="state">I shared this on my fb wall a few months back, and I thought I'd share it here again because it's such a great...
                     </p>
                 </li>
                 <li>
-                    <p class="time">Yesterday</p>
-                    <p class="name"><strong>Dustin Benson </strong><br><span>Facebook</span></p>
+                    <div class="person">
+                        <img src="img/Dustin.png">
+                        <p class="time">Yesterday</p>
+                        <p class="name"><strong>Dustin Benson </strong><br><span>Facebook</span></p>
+                    </div>
                     <p class="state">If there is anyone who needs an invitation plase add yourself in the comments of this post!
                     </p>
                 </li>
                 <li>
-                    <p class="time">Yesterday</p>
-                    <p class="name"><strong>Jack Mason </strong><br><span>Yahoo</span></p>
+                    <div class="person">
+                        <img src="img/Jack.png">
+                        <p class="time">Yesterday</p>
+                        <p class="name"><strong>Jack Mason </strong><br><span>Yahoo</span></p>
+                    </div>
                     <p class="state">BruteDC is a peer-to-peer movie+tv series sharing and downloading platform which works on intranet inside...
                     </p>
                 </li>
                 <li>
-                    <p class="time">13 Jun</p>
-                    <p class="name"><strong>Stephen Shelton </strong><br><span>Snapchat</span></p>
+                    <div class="person">
+                        <img src="img/Stephen.png">
+                        <p class="time">13 Jun</p>
+                        <p class="name"><strong>Stephen Shelton </strong><br><span>Snapchat</span></p>
+                    </div>
                     <p class="state">Yes, p2p traffic is often filtered (QoSed). Although i do use BT on O2 wires, and in good days dl speed...
                     </p>
                 </li>
                 <li>
-                    <p class="time">12 Jun</p>
-                    <p class="name"><strong>Sally Willis </strong><br><span>Twitter</span></p>
+                    <div class="person">
+                        <img src="img/Sally.png">
+                        <p class="time">12 Jun</p>
+                        <p class="name"><strong>Sally Willis </strong><br><span>Twitter</span></p>
+                    </div>
                     <p class="state">Yes, it's O2:'internet extreme', which is no longer offered.
                     </p>
                 </li>
                 <li>
-                    <p class="time">9 Jun</p>
-                    <p class="name"><strong>Robert Patton </strong><br><span>A Team</span></p>
+                    <div class="person">
+                        <img src="img/Robert.png">
+                        <p class="time">9 Jun</p>
+                        <p class="name"><strong>Robert Patton </strong><br><span>A Team</span></p>
+                    </div>
                     <p class="state">I change my service from this 4Mb plan to their much
                     </p>
                 </li>
