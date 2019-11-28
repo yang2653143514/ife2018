@@ -245,7 +245,46 @@
             font-size:12px;
         }
         #content2{
-            border:1px solid #ccc;
+            border:1px solid #eee;
+        }
+        #content2-1{
+            height: 60px;
+            border:1px solid #eee;
+            display: flex;
+            justify-content:space-between;
+        }
+        #content2-1 #paple{
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+        }
+        #paple > p{
+            padding-left:50px;
+            font-size:25px;
+            font-weight: 500;
+        }
+        #paple #dot{
+            width:8px;
+            height: 8px;
+            border-radius: 100%;
+            background-color:green;
+            margin-left:10px;
+        }
+        #content2-1 #page{
+            display: flex;
+            width:350px;
+            justify-content: center;
+            align-items: center;
+        }
+        #page p{
+            flex-shrink: 0;
+            margin:0 10px;
+            padding:0 15px;
+            border-left: 1px solid #ccc;
+            font-size:20px;
+            font-weight: 700;
+        }
+        #page img{
         }
 	</style>
 </head>
@@ -384,12 +423,15 @@
         <!-- 内容右侧自适应宽度 -->
         <div id="content2">
             <div id="content2-1">
+                <div id="paple">
+                    <p>Bessie Berry </p>
+                    <div id="dot"></div>
+                </div>
                 <div id="page">
                     <img src="img/Tools.png">
-                    <p><strong> 1 of 28</strong></p>
+                    <p>1 of 28</p>
                     <img src="img/Chats.png">
                 </div>
-                    <strong class="bluefont">Bessie Berry ·</strong>
             </div>
 
             <div id="content2-2">
