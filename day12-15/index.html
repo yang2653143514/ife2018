@@ -17,6 +17,7 @@
 		body{
 			border: 2px solid #ccc;
             display: flex;
+            overflow-x:hidden;
 		}
         .clearfix:after{
             content:"";
@@ -176,12 +177,14 @@
             flex-shrink: 0;
             border:1px solid #eee;
             overflow: hidden;
+            margin-right:-1px;
         }
         #content1 #search{
             position: relative;
             width:100%;
             height:60px;
             border:1px solid #eee;
+            margin-right:-1px;
         }
         #search div{
             position: absolute;
@@ -250,6 +253,7 @@
         #content2-1{
             height: 60px;
             border:1px solid #eee;
+            margin-left:-1px;
             display: flex;
             justify-content:space-between;
         }
@@ -284,7 +288,90 @@
             font-size:20px;
             font-weight: 700;
         }
-        #page img{
+        #hiddencontentscroll{
+            height: calc(100% - 62px);
+        }
+        #contentscroll{
+            margin-right:-20px;
+            height: 100%;
+            overflow-y:scroll;
+        }
+        .contents{
+            padding:20px 30px;
+            border:none;
+        }
+        .contents div{
+            padding-left:60px;
+            position: relative;
+            min-height: 50px;
+            padding-bottom: 10px;
+        }
+        .contents div>p{
+            font-size: 14px;
+            color:#333;
+        }
+        .contents div>p>strong{
+            font-weight: 600;
+            font-size: 18px;
+        }
+        .contents div>p>span{
+            padding-left:5px;
+            font-size: 14px;
+            color:#999;
+        }
+        .contents div>img:first-child{
+            position: absolute;
+            top:0;
+            left:0;
+            width:46px;
+            height: 46px;
+        }
+        .content-hr{
+            position: relative;
+            height: 1px;
+            width: 100%;
+            color: #7f8fa4;
+            background-color: #d9dde3;
+        }
+        .content-hr:after {
+            content: attr(data);
+            font-size: 16px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0 17px;
+            background-color: #fff;
+        }
+        #content2-2{
+        }
+        #content2-3{
+        }
+        #content2-3 .image{
+            display: flex;
+            margin-left: 60px;
+        }
+        #content2-3 .image img{
+            width:180px;
+            height:130px;
+        }
+        #content2-3 .image img:nth-of-type(2){
+            margin-left:150px;
+        }
+        #content2-3 .image img:hover{
+            opacity: 0.5;
+        }
+        #content2-4 input{
+            margin:20px 0 10px 60px;
+            padding-left:80px;
+            width:800px;
+            height:50px;
+            background: url(img/Addicon.png) no-repeat 0 -3px;
+            border:none;
+            outline: none;
+            border:1px solid #999;
+            font-size: 14px;
+            color:#666;
         }
 	</style>
 </head>
@@ -433,44 +520,52 @@
                     <img src="img/Chats.png">
                 </div>
             </div>
-
-            <div id="content2-2">
-                <div>
-                    <p><strong>Bessie Berry </strong> 8:31 AM</p>
-                    <p>Hi guys lve got the O2 package and have really slow internet. A speed check online said i can get 3mbps but it seems more like 0.5 these days, just freezing and taking ages to open pages and open audio files for example.I have decide to switch to the UPC package which offers 10mbps but do you think i will get it?
-                    </p>
+            <div id="hiddencontentscroll">
+                <div id="contentscroll">
+                    <div id="content2-2" class="contents">
+                        <div>
+                            <img src="img/Bessie.png">
+                            <p><strong>Bessie Berry </strong> <span>8:31 AM</span></p>
+                            <p>Hi guys lve got the O2 package and have really slow internet. A speed check online said i can get 3mbps but it seems more like 0.5 these days, just freezing and taking ages to open pages and open audio files for example.I have decide to switch to the UPC package which offers 10mbps but do you think i will get it?
+                            </p>
+                        </div>
+                        <div>
+                            <img src="img/headericon.png">
+                            <p><strong>Jordan Jackson</strong> <span>8:31 AM</span></p>
+                            <p>I have internet for 9 month and nevere could benefit from the full capacity of 5Mbit/s as it is filtered by O2 when it detect traffic on public p2p sharing in my situation all my internet speed slows to 512Kbit/s. I never had 400KB/s on when downloading from p2p public servers like torrent emule etc. I downoad with 500KB/s from private trakers instead. So conlcusion O2 block trafic on p2p connections. I have made hundreds of test in Italy and Sweden and Romania with the same file to doanload with the same setting and same antivirus and just needed to open ports in firewall and forward same ports and the speed was at full capacity in 1 minute. here in 9 month never had this luck.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="content-hr" data="Tuesday"></div>
+                    <div id="content2-3" class="contents">
+                        <div>
+                            <img src="img/Bessie.png">
+                            <p><strong>Bessie Berry </strong> 8:31 AM</p>
+                            <p>Funny comparison, so would the proper antivirus not slow down the internet as much or do you mean a freebie doenst protect the computer from viruses?
+                            </p>
+                        </div>
+                        <div>
+                            <img src="img/headericon.png">
+                            <p><strong>Jordan Jackson</strong> 8:31 AM</p>
+                            <p>I pay for the 4Mb/sec down, 512 Kb/sec up service from O2, and haven't had any problems. In fact, it's  relatively quick, and stable. It's not perfect, but I really don't have issues, as long as I keep track of what I'm doing on it. I max out at about 3 Mb/sec down, and 350Kb/sec up. Probably because of a noisy telephone line, not because I'm being throttled. When my uploads go over 25 KB/sec (note, byte, not bits), my download speed suffers. This is expected, as downloads require upload bandwidth as well.
+                            </p>
+                        </div>
+                        <div class="image">
+                            <img src="img/Photo1.png">
+                            <img src="img/Photo2.png">
+                        </div>
+                    </div>
+                    <div class="content-hr" data="New Massages"></div>
+                    <div id="content2-4" class="contents">
+                        <div>
+                            <img src="img/Bessie.png">
+                            <p><strong>Jordan Jackson</strong> 8:31 AM</p>
+                            <p>I pay for the 4Mb/sec down, 512 Kb/sec up service from O2. In fact, it's  relatively quick, and stable.it's not perfect, but I really don't have issues, as long as I keep track of what I'm doing on it.
+                            </p>
+                        </div>
+                        <input type="text" value="Well,kinda both:) but more of that second option, i've seen many systems infected and crawling with ">
+                    </div>
                 </div>
-                <div>
-                    <p><strong>Jordan Jackson</strong> 8:31 AM</p>
-                    <p>I have internet for 9 month and nevere could benefit from the full capacity of 5Mbit/s as it is filtered by O2 when it detect traffic on public p2p sharing in my situation all my internet speed slows to 512Kbit/s. I never had 400KB/s on when downloading from p2p public servers like torrent emule etc. I downoad with 500KB/s from private trakers instead. So conlcusion O2 block trafic on p2p connections. I have made hundreds of test in Italy and Sweden and Romania with the same file to doanload with the same setting and same antivirus and just needed to open ports in firewall and forward same ports and the speed was at full capacity in 1 minute. here in 9 month never had this luck.
-                    </p>
-                </div>
-            </div>
-
-            <div id="content2-3">
-                <p>Tuesday</p>
-                <div>
-                    <p><strong>Bessie Berry </strong> 8:31 AM</p>
-                    <p>Funny comparison, so would the proper antivirus not slow down the internet as much or do you mean a freebie doenst protect the computer from viruses?
-                    </p>
-                </div>
-                <div>
-                    <p><strong>Jordan Jackson</strong> 8:31 AM</p>
-                    <p>I pay for the 4Mb/sec down, 512 Kb/sec up service from O2, and haven't had any problems. In fact, it's  relatively quick, and stable. It's not perfect, but I really don't have issues, as long as I keep track of what I'm doing on it. I max out at about 3 Mb/sec down, and 350Kb/sec up. Probably because of a noisy telephone line, not because I'm being throttled. When my uploads go over 25 KB/sec (note, byte, not bits), my download speed suffers. This is expected, as downloads require upload bandwidth as well.
-                    </p>
-                    <img src="img/Photo1.png">
-                    <img src="img/Photo2.png">
-                </div>
-            </div>
-
-            <div id="content2-4">
-                <p>New Massages</p>
-                <div>
-                    <p><strong>Jordan Jackson</strong> 8:31 AM</p>
-                    <p>I pay for the 4Mb/sec down, 512 Kb/sec up service from O2. In fact, it's  relatively quick, and stable.it's not perfect, but I really don't have issues, as long as I keep track of what I'm doing on it.
-                    </p>
-                </div>
-                <input type="text" placeholder="Well,kinda both:) but more of that second option, i've seen many systems infected and crawling with ">
             </div>
         </div>
     </div>
