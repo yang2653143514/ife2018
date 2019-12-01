@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			box-sizing: border-box;
+			padding:0;
+			margin:0;
+		}
+		content{
+			margin:200px auto;
+			width:1000px;
+			display: flex;
+			justify-content: space-around;
+		}
+		.box{
+			width:100px;
+			height:100px;
+			border:1px solid #ccc;
+			background-color: #eee;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.box2{
+			transform: skew(30deg);
+		}
+		.box3{
+			transform: scaleX(0.5);
+		}
+		.box4{
+			transform: rotate(45deg);
+		}
+		.box5{
+			transform:translate(20px,50px);
+		}
+		.box6{
+			transform: skew(30deg) scaleX(0.5) rotate(45deg) translate(20px,50px);
+		}
+	</style>
+</head>
+<body>
+	<content>
+		<div class="box box1"><span>box1</span></div>
+	    <div class="box box2"><span>box2</span></div>
+	    <div class="box box3"><span>box3</span></div>
+	    <div class="box box4"><span>box4</span></div>
+	    <div class="box box5"><span>box5</span></div>
+	    <div class="box box6"><span>box6</span></div>
+	</content>
+</body>
+</html>
