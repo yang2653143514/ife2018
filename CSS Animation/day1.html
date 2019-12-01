@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			box-sizing: border-box;
+			padding:0;
+			margin:0;
+		}
+		body{
+			display: flex;
+			justify-content: space-around;
+		}
+		body>div{
+			position: relative;
+			flex-basis: 600px;
+			height:300px;
+			border:1px solid #ccc;
+		}
+		div>div{
+			position: absolute;
+			top:50%;
+			left:50%;
+			transform: translate(-50%,-50%);
+		}
+		div>div>p{
+			position: relative;
+			cursor: pointer;
+			font-size:20px;
+			margin-bottom:10px;
+			transition: color 2s;
+		}
+		div>div>p>span{
+			position: absolute;
+			left:0;
+			top:100%;
+			height:2px;
+			width:calc(100% - 10px);
+			background-color: blue;
+			transform: scale(0);
+			transition: transform 2s;
+		}
+		div>div>button{
+			font-size:20px;
+			font-weight: 400;
+			padding:5px 10px;
+			margin-left: -10px;
+			background-color: #fff;
+			outline: none;
+			border:1px solid #000;
+			border-radius: 5px;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<strong>样式改变后，需要手动进行切换</strong>
+		<div>
+			<p>前端学院
+			<span></span>
+			</p>
+			<button>切换样式</button>
+		</div>
+	</div>
+	<div>
+		<strong>样式改变后，自动进行切换</strong>
+		<div>
+			<p>前端学院
+			<span></span>
+			</p>
+			<button>切换样式</button>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var p = document.querySelectorAll('p');
+		var span = document.querySelectorAll('span');
+		var button = document.querySelectorAll('button');
+		var flag = false;
+
+		button[0].addEventListener('click',function(){
+			if(!flag){
+				p[0].style.color = 'blue';
+				span[0].style.transform = 'scale(1)';
+				flag = true;
+			} else {
+				p[0].style.color = 'black';
+				span[0].style.transform = 'scale(0)';
+				flag = false;
+			}
+		});
+		button[1].addEventListener('click',function(){
+			p[1].style.color = 'blue';
+			span[1].style.transform = 'scale(1)';
+			setTimeout(function(){
+							p[1].style.color = 'black';
+							span[1].style.transform = 'scale(0)';
+						},2000);
+		})
+	</script>
+</body>
+</html>
