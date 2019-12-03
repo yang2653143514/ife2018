@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>卡片翻转</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+			box-sizing: border-box;
+		}
+		.main{
+			width:200px;
+			position: relative;
+			margin:200px auto;
+		}
+		.main img{
+			position: absolute;
+			transition: transform 2s;
+		}
+		.main .back{
+			transform: rotateY(180deg);
+			backface-visibility: hidden;
+		}
+		.main:hover .front{
+			transform: rotateY(180deg);
+		}
+		.main:hover .back{
+			transform: rotateY(0deg);
+		}
+	</style>
+</head>
+<body>
+	<div class="main">
+		<img src="./images/正面.jpg" class="front">
+		<img src="./images/反面.jpg" class="back">
+	</div>
+</body>
+</html>
