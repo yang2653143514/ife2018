@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3_6</title>
+    <style>
+        html, body, .layout, .main {
+            height: 100%;
+        }
+        body, .layout {
+            position: relative;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+        .main {
+            background-image: url(./images/1.jpg);
+            background-size :cover;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+        }
+        .footer {
+            width: 100%;
+            position: absolute;
+            left: 50%;
+            bottom: 80px;
+            transform: translate(-50%, 0);
+            text-align: center;
+            user-select: none;
+        }
+        .footer  img {
+            width: 200px;
+            height: 120px;
+            vertical-align: top;
+        }
+        .footer span {
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+        }
+        .footer span::before {
+            content: '';
+            display: block;
+            background: rgba(0,0,0,0.6);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+        }
+        .footer span:hover::before{
+            background: rgba(0,0,0,0);
+        }
+        @keyframes first {
+            from {
+                left: -100%;
+            } to  {
+                left: 0;
+            }
+        }
+        @keyframes second {
+            from {
+                top: -100%;
+            } to {
+                top: 0;
+            }
+        }
+        @keyframes third {
+            from {
+                transform: scale(0.1);
+            } to {
+                transform: scale(1);
+            }
+        }
+        @keyframes fourth {
+            from {
+                transform: scale(2); 
+            } to {
+                transform: scale(1)
+            }
+        }
+        @keyframes fifth {
+            from {
+                transform: scale(0.1) rotateZ(-360deg) ;
+            } to {
+                transform: scale(1) rotateZ(0deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+    <div class="main"></div>
+    <div class="footer">
+        <span><img src="./images/1.jpg" alt="#" data-index='first' data-animation-time='0.5s'></span>
+        <span><img src="./images/2.jpg" alt="#" data-index='second' data-animation-time='0.5s'></span>
+        <span><img src="./images/3.jpg" alt="#" data-index='third' data-animation-time='1.0s'></span>
+        <span><img src="./images/4.jpg" alt="#" data-index='fourth' data-animation-time='1.0s'></span>
+        <span><img src="./images/5.jpg" alt="#" data-index='fifth' data-animation-time='0.7s'></span>
+    </div>
+    <script>
+        var footer = document.querySelector('.footer');
+        var main = document.querySelector('.main');
+        footer.addEventListener('click',function(e){
+        //console.log(e.target.nodeName) 
+        if (e.target.nodeName == 'SPAN') {
+            var img = e.target.querySelector('img');
+            // now = img;
+            var imgSrc =img.getAttribute('src');
+            var index = img.dataset.index; // dataset 是一个包含data- 自定义属性的对象
+            var time = img.dataset.animationTime; 
+            main.style.backgroundImage = `url(${imgSrc})`;
+            main.style.animation =`${index} ${time} 1 alternate forwards`;
+            }
+        })
+    </script>
+</body>
+</html>
